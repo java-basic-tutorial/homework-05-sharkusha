@@ -17,12 +17,32 @@ public class Account {
 
     public void deposit(long amount) {
         // TODO: if amount is negative - throw IllegalArgumentException
+        if (amount < 0) {
+            throw new IllegalArgumentException("Amount should be positive");
+        }
         balance += amount;
     }
 
-    public void withdraw(long amount) {
-        // TODO: if amount is negative - throw IllegalArgumentException
+    public void withdraw(long amount) throws NotMoneyEnoughException {
+        /* TODO: if amount is negative - throw IllegalArgumentException */
+
+        if (amount < 0) {
+            throw new IllegalArgumentException("Amount should be positive");
+        }
+
         // TODO: if amount higher than balance - throw NoManyEnoughException
+        if (amount > this.balance) {
+            throw new NotMoneyEnoughException("No monay");
+        }
         balance -= amount;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "balance=" + balance +
+                '}';
     }
 }
